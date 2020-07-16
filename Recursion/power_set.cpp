@@ -5,11 +5,15 @@ void power_set(string s,string ans,int i)
 {
     if(i==s.length())
     {
-        cout<<ans<<"\n";
-        return;
+        cout<<ans<<" ";return;
     }
-    power_set(s,ans+s[i],i+1);
-    power_set(s,ans,i+1);
+
+    for(int j=i;j<s.length();j++)
+    {
+        ans+=s[j];
+        cout<<ans<<"\n";
+    }
+    power_set(s,"",i+1);
 }
 
 int main()
