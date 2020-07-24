@@ -1,5 +1,3 @@
-#include<bits/stdc++.h>
-using namespace std;
 
 class node
 {
@@ -170,8 +168,9 @@ int searchll(int i,int j,node* head)
 }
 
 
-void buildll(node* head)
+void buildll(node* &head)
 {
+    //node* temp=head;
     int n;
     cin>>n;
     while(n!=-1)
@@ -179,32 +178,8 @@ void buildll(node* head)
         intail(head,n);
         cin>>n;
     }
+    //head=temp;
+    cout<<"\nhead is "<<head->data<<"\n";
     return;
 }
 
-int main()
-{
-    node* head = NULL;
-    inshead(head,5);
-
-    inshead(head,3);
-
-    inshead(head,5);
-
-    inshead(head,2);
-
-    inshead(head,9);
-
-    inshead(head,1);
-
-    intail(head,77);
-
-   // insmiddle(head,131,head);
-    inpos(head,123,3);
-
-    deletion(head,len(head)-1);
-    prn(head);
-    cout<<searchll(0,123,head)<<"\n";
-    buildll(head);
-    prn(head);
-}
