@@ -1,3 +1,4 @@
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -131,27 +132,11 @@ void deletion(node* &head,int pos)
         h=h->next;
         pos--;
     }
-    if(pos==-1)
+    if(pos<=0)
     {
-        node* temp=head->next;
-        free(head);
-        head=temp;
-        return;
-    }
-    if(h->next==NULL)
-    {
-        return;
-    }
-    if(h->next->next==NULL)
-    {
-        free(h->next);
-        h->next=NULL;
-    }
-    else
-    {
-        node* temp=h->next->next;
-        free(h->next);
-        h->next=temp;
+        node* temp=h->next;
+        free(h);
+        h=temp;
         return;
     }
 }
@@ -201,10 +186,10 @@ int main()
 
    // insmiddle(head,131,head);
     inpos(head,123,3);
-
-    deletion(head,len(head)-1);
     prn(head);
-    cout<<searchll(0,123,head)<<"\n";
-    buildll(head);
+    deletion(head,3);
     prn(head);
+//    cout<<searchll(0,123,head)<<"\n";
+//    buildll(head);
+//    prn(head);
 }
