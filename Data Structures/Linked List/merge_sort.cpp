@@ -1,29 +1,47 @@
 #include<bits/stdc++.h>
 using namespace std;
-#include "fn.h"
 
-node* merge_ll(node* &head1,node* &head2)
+class node
 {
-    if(head1==NULL)
+public:
+    int data;
+    node* next;
+
+    node(int d)
     {
-        return head2;
+        data=d;
+        next=NULL;
     }
-    if(head2==NULL)
+};
+
+node* tail(node* &head,int d)
+{
+    node* t=new node(d);
+    if(head!=NULL)
     {
-        return head1;
-    }
-    node* c;
-    if(head1->data<head2->data)
-    {
-        c=head1;
-        c->next=merge_ll(head1->next,head2);
+        node* h=head;
+        while(h->next!=NULL)
+        {
+            h=h->next;
+        }
+        h->next=t;
     }
     else
     {
-        c=head2;
-        c->next=merge_ll(head1,head2->next);
+        head=t;
     }
-    return c;
+    return head;
+}
+
+void prnt(node* head)
+{
+    if(head==NULL)
+    {
+        cout<<"\n";
+        return;
+    }
+    cout<<head->data<<" ";
+    prnt(head->next);
 }
 
 node* middle(node* head)
@@ -33,47 +51,65 @@ node* middle(node* head)
         return head;
     }
     node* h=head;
-    node* fast=head->next;
-    while(fast!=NULL && fast->next!=NULL)
+    node* f=head->next;
+    while(f!=NULL && f->next!=NULL)
     {
+        f=f->next->next;
         h=h->next;
-        fast=fast->next->next;
     }
     return h;
 }
 
+node* mergee(node* &a,node* &b)
+{
+    node* c;
+    if(a==NULL)
+    {
+        return b;
+    }
+    if(b==NULL)
+    {
+        return a;
+    }
+    if(a->data < b->data)
+    {
+        c=a;
+        c->next=(mergee(a->next,b));
+    }
+    else
+    {
+        c=b;
+        c->next=(mergee(a,b->next));
+    }
+    prnt(c);
+    return c;
+}
+
 node* merge_sort(node* head)
 {
-    //prn(head);
     if(head==NULL || head->next==NULL)
     {
         return head;
     }
-    //prn(head);
+    prnt(head);
     node* mid=middle(head);
-    //cout<<mid->data<<" ";
-    //
-    node* a=head;
-    node* b=mid->next;
+    node* temp;
+    temp=mid->next;
     mid->next=NULL;
-    a=merge_sort(a);
-    b=merge_sort(b);
-    node* c=merge_ll(a,b);
+    node* b=merge_sort(temp);
+    node* a=merge_sort(head);
+    node* c=mergee(b,a);
     return c;
 }
 
 int main()
 {
     node* head=NULL;
-    //buildll(head);
-    intail(head,5);intail(head,4);
-    intail(head,3);intail(head,2);
-    intail(head,1);
-
-
-    //intail(head,5);
-    node* h=head;
+    tail(head,5);
+    tail(head,4);
+    tail(head,3);
+    tail(head,2);
+    tail(head,1);
     merge_sort(head);
-    prn(h);
+    prnt(head);
 }
-
