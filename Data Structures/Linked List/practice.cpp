@@ -1,132 +1,3 @@
-//#include<bits/stdc++.h>
-//using namespace std;
-//
-//class node{
-//public:
-//    int data;
-//    node* next;
-//
-//    node(int d)
-//    {
-//        data=d;
-//        next=NULL;
-//    }
-//} ;
-//
-//void cinhead(node* &head,int d)
-//{
-//    node* t=new node(d);
-//    t->next=head;
-//    if(head==NULL)
-//    {
-//        head=t;
-//        head->next=head;
-//    }
-//    else
-//    {
-//        t->next=head;
-//        node* h=head;
-//        while(h->next!=head)
-//        {
-//            h=h->next;
-//        }
-//        h->next=t;
-//        t=head;
-//    }
-//}
-//
-//
-//void cintail(node* &head,int d)
-//{
-//    node* t=new node(d);
-//    t->next=head;
-//    node* h=head;
-//    if(head==NULL)
-//    {
-//        head=t;
-//        head->next=head;
-//    }
-//    else
-//    {
-//        node* h=head;
-//        while(h->next!=head)
-//        {
-//            h=h->next;
-//        }
-//        h->next=t;
-//        t->next=head;
-//    }
-//}
-//
-//void prn(node* head,node* h)
-//{
-//    if(head==NULL)
-//    {
-//        return;
-//    }
-//    if(h->next==head)
-//    {
-//        cout<<h->data<<"\n";
-//        return;
-//    }
-//    cout<<h->data<<" ";
-//    prn(head,h->next);
-//}
-//
-//void delete_node (node* &head,node* &h,int pos)
-//{
-//    if(head==NULL)
-//    {
-//        return;
-//    }
-//    if(pos-1<=0)
-//    {
-//        if(h==head)
-//        {
-//            node* temp=head;
-//            while(temp->next!=head)
-//            {
-//                temp=temp->next;
-//            }
-//            temp->next=head->next;
-//            head=head->next;
-//        }
-//        else if(h->next==head)
-//        {
-//            node* temp=head;
-//            while(temp->next->next!=head)
-//            {
-//                temp=temp->next;
-//            }
-//            delete(temp->next);
-//            temp->next=head;
-//        }
-//        else
-//        {
-//            node* temp=h->next->next;
-//            delete(h->next);
-//            h->next=temp;
-//        }
-//        return;
-//    }
-//    delete_node(head,h->next,pos-1);
-//}
-//
-//int main()
-//{
-//    int i,j,k,n,m;
-//    node* head=NULL;
-//    cinhead(head,1);
-//    cinhead(head,2);cinhead(head,3);
-//    cinhead(head,4);
-//    cintail(head,5);
-//    cintail(head,6);
-//    cintail(head,7);
-//    cintail(head,8);
-//    delete_node(head,head,1);
-//    prn(head,head);
-//}
-
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -154,7 +25,6 @@ void prn(node* h)
 	}
 	cout<<h->data<<" ";
 	prn(h->next);
-
 }
 
 void intail(node* &head,int d)
@@ -181,37 +51,36 @@ void intail(node* &head,int d)
 
 }
 
-bool palindrome(node* head)
+int len(node* head)
 {
-	node* h=head;
-	node* f=head->next;
-	string s="",t="";
-	int c=0;
-	//cout<<"ff";
-	while(f!=NULL)
-	{
-		s+=to_string(h->data);
-		h=h->next;
-		if(f->next!=NULL)
-        {
-            f=f->next->next;
-            break;
-        }
-		c++;
-	}
-	if(f==NULL)
-	{
-		h=h->next;
-	}
-	while(h!=NULL)
-	{
-		t+=to_string(h->data);
-		h=h->next;
-	}
-	cout<<s<<" "<<t<<"\n";
-	reverse(t.begin(),t.end());
-	return t==s;
+    if(head==NULL)
+    {
+        return 0;
+    }
+    return 1+(len(head->next));
 }
+
+insert_sort(node* &head)
+{
+	node* i=head;
+	node* j=head;
+	while(i!=NULL)
+	{
+		j=i->next;
+		while(j!=NULL)
+		{
+			if(i->data>j->data)
+			{
+				int t=i->data;
+				i->data=j->data;
+				j->data=t;
+			}
+			j=j->next;
+		}
+		i=i->next;
+	}
+}
+
 
 int main() {
 	node* head=NULL;
@@ -222,6 +91,7 @@ int main() {
 		cin>>m;
 		intail(head,m);
 	}
-	cout<<palindrome(head);
+	insert_sort(head);
+	prn(head);
 	return 0;
 }
