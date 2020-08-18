@@ -4,31 +4,36 @@ using namespace std;
 void slide(int arr[],int k,int n)
 {
     deque<int> v;
-    int m=INT_MIN;
-    int f=0;
-    for(int i=0;i<n;i++)
+    int i,j,m;
+    for(i=0;i<k;i++)
     {
-        if(f==0)
+        if(!v.empty())
         {
-            for(int j=0;j<k;j++)
+            while(!v.empty() && arr[v.back()]<=arr[i])
             {
-                v.push_back(arr[j]);
-                if(m<arr[j])
-                {
-                    m=arr[j];
-                }
+                v.pop_back();
             }
-            f=1;
-            i+=k-1;
         }
-        else
+        v.push_back(i);
+    }
+
+    for(i=k;i<n;i++)
+    {
+        cout<<arr[v.front()]<<" ";
+        //remove the elements which aren't in the window
+        while(!v.empty() && i-v.front()>=k)
         {
             v.pop_front();
-            m=max(m,arr[i]);
-            v.push_back(arr[i]);
         }
-        cout<<m<<" ";
+        //remove unwanted lesser elements (ie lesser than arr[i])
+        while(!v.empty() && arr[v.back()]<=arr[i])
+        {
+            v.pop_back();
+        }
+        //add the element arr[i] to the queue
+        v.push_back(arr[i]);
     }
+    cout<<v.front()<<" ";
     cout<<"\n";
 }
 
