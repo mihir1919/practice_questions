@@ -6,13 +6,11 @@ public:
     int data;
     node* left;
     node* right;
-    node* next;
     node(int d)
     {
         data=d;
         left=NULL;
         right=NULL;
-        next=NULL;
     }
 
 };
@@ -62,31 +60,42 @@ pair<node*,node*> toLL(node* root)
     {
         return p;
     }
-    cout<<root->data<<" ";
+
     pair<node*,node*> l=toLL(root->left);
     pair<node*,node*> r=toLL(root->right);
     if(l.first!=NULL)
     {
         p.first=l.first;
-        l.second->next=root;
-
+        l.second->right=root;
     }
     if(r.first!=NULL)
     {
-        root->next=r.first;
+        root->right=r.first;
         p.second=r.second;
-    }
-    cout<<p.first->data<<" "<<p.second->data<<endl;
+    }ss
     return p;
+}
+
+void prn_ll(node* root)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    cout<<root->data<<" ";
+    prn_ll(root->right);
 }
 
 int main()
 {
     node* root=build();
     pair<node*,node*> p=toLL(root);
-    cout<<p.first->data<<" "<<p.second->data<<" ";
+    //cout<<p.first->data<<" "<<p.second->data<<" ";
+    cout<<endl;
+    prn_ll(p.first);
     //bf(root);
 }
 
 // 8 10 1 -1 -1 6 9 -1 -1 7 -1 -1 3 -1 14 13 -1 -1 -1
+// 5 3 8 2 4 7 15 -1
 
