@@ -70,8 +70,8 @@ void bf(node* root)
 
 int main()
 {
-    vector<int>arr1={1,2,3,4,8,5,6,7};
-    vector<int>arr2={3,2,8,4,1,6,7,5};
+    vector<int>arr1={1,2,3};
+    vector<int>arr2={3,2,1};
     node* root=build(arr1,arr2,0,arr1.size()-1);
     bf(root);
 }
