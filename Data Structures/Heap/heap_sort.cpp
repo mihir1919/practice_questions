@@ -5,6 +5,7 @@ void heapify(vector<int> &v,int i,int e)
 {
     if(i<0 || i>e)
     {
+        
         return;
     }
     int b=2*i;
@@ -24,16 +25,16 @@ void heapify(vector<int> &v,int i,int e)
 
 int main()
 {
-    int i,j,k,n,m;
-    n=9;
+    int i,t,j,k,n,m;
+    cin>>t;
     vector<int> v;
     v.push_back(-1);
-    for(i=0;i<9;i++)
+    for(i=0;i<t;i++)
     {
         cin>>k;
         v.push_back(k);
     }
-    for(i=9/2;i>=1;i--)
+    for(i=t/2;i>=1;i--)
     {
         heapify(v,i,v.size()-1);
     }

@@ -1,0 +1,56 @@
+// Available variables which can be used inside of strings.
+// ${workspaceRoot}: the root folder of the team        
+// ${file}: the current opened file                     
+// ${fileBasename}: the current opened file's basename 
+// ${fileDirname}: the current opened file's dirname    
+// ${fileExtname}: the current opened file's extension  
+// ${cwd}: the current working directory of the spawned process
+
+
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "windows": {
+                "command": "g++",
+                "args": [
+                    "-ggdb",
+                    "\"${file}\"",
+                    "--std=c++11",
+                    "-o",
+                    "\"${fileDirname}\\${fileBasenameNoExtension}.exe\""
+                ]
+            }
+        },
+        {
+            "type": "shell",
+            "label": "C/C++: cpp.exe build active file",
+            "command": "C:\\Program Files (x86)\\CodeBlocks\\MinGW\\bin\\cpp.exe",
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        }
+    ]
+}
