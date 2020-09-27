@@ -3,6 +3,10 @@ using namespace std;
 
 int comp(pair<int,pair<int,int>> a,pair<int,pair<int,int>> b)
 {
+    if(a.second.second==b.second.second)
+    {
+        return a.second.first>b.second.first;
+    }
     return a.second.second<b.second.second;
 }
 
@@ -15,7 +19,7 @@ int fn(vector<pair<int,pair<int,int>>> act)
     {
         if((act[i]).second.first>=t)
         {
-            //cout<<act[i].first<<" ";
+            //cout<<act[i].first<<"
             ans++;
             t=(act[i]).second.second;
         }
