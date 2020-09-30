@@ -2,20 +2,21 @@
 using namespace std;
 
 
-int dp[1000]={};
+int dp[1000]={0};
 
 
 int lis_bottom_up(vector<int> v)
 {
     for(int i=0;i<v.size();i++)
     {
+        dp[i]=1;
         int m=0;
         for(int j=0;j<i;j++)
         {
             if(v[i]>v[j])
             {
                 dp[i]=max(dp[i],dp[j]+1);
-            }
+            }   
         }
     }
     return dp[v.size()];
@@ -28,7 +29,6 @@ int lis(vector<int> v,int i,int l)
     {
         return 0;
     }
-    
     if(dp[i]!=0)
     {
         return dp[i];
@@ -55,3 +55,4 @@ int main()
 }
 
 //8 10 22 9 33 21 50 41 60
+//8 1 5 2 3 4 9 6 10
