@@ -19,22 +19,22 @@ int lis_bottom_up(vector<int> v)
             }   
         }
     }
-    return dp[v.size()];
+    return *max_element(dp,dp+v.size());
 }
 
 
-int lis(vector<int> v,int i,int l)
-{
-    if(i==v.size() || v[i]<l)
-    {
-        return 0;
-    }
-    if(dp[i]!=0)
-    {
-        return dp[i];
-    }
-    return dp[i]=max((1+lis(v,i+1,v[i])),(lis(v,i+1,l)));
-}
+// int lis(vector<int> v,int i,int l)
+// {
+//     if(i==v.size() || v[i]<l)
+//     {
+//         return 0;
+//     }
+//     if(dp[i]!=0)
+//     {
+//         return dp[i];
+//     }
+//     return dp[i]=max((1+lis(v,i+1,v[i])),(lis(v,i+1,l)));
+// }
 
 int main()
 {
