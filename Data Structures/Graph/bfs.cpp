@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+<<<<<<< Updated upstream
 
 class graph
 {
@@ -64,10 +65,53 @@ class graph
               cout<<x.first<<" "<<x.second<<"\n";
           }
       }
+=======
+class graph
+{
+    map<int,list<int>> m;
+    
+    public:
+        void addEdge(int x,int y)
+        {
+            m[x].push_back(y);
+            m[y].push_back(x);
+        }
+
+        void sp(int src,int dest)
+        {
+            deque<int> q;
+            unordered_map<int,int> dis;
+            q.push_back(src);
+            for(auto x:m)
+            {
+                dis[x.first]=INT_MAX;
+            }
+            dis[src]=0;
+            while(!q.empty())
+            {
+                // cout<<q.front()<<" ";
+                int x=q.front();
+                q.pop_front();
+                for(auto y:m[x])
+                {
+                    if(dis[y]==INT_MAX)
+                    {
+                        dis[y]=1+dis[x];
+                        q.push_back(y);
+                    }
+                }
+            }
+            for(auto x:dis)
+            {
+                cout<<x.first<<" "<<x.second<<"\n";
+            }
+        }
+>>>>>>> Stashed changes
 };
 
 int main()
 {
+<<<<<<< Updated upstream
     graph g;
     g.AddEdge(0,1);
     g.AddEdge(1,2);
@@ -78,3 +122,15 @@ int main()
     g.shortest_path(0,5);
     return 0;   
 }
+=======
+    int i,j,k,n,m;
+    graph g;
+    g.addEdge(0,1);
+    g.addEdge(1,2);
+    g.addEdge(2,3);
+    g.addEdge(0,3);
+    g.addEdge(3,4);
+    g.addEdge(4,5);
+    g.sp(0,5);
+}
+>>>>>>> Stashed changes
