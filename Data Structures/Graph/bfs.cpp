@@ -2,6 +2,7 @@
 using namespace std;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 class graph
 {
@@ -66,6 +67,8 @@ class graph
           }
       }
 =======
+=======
+>>>>>>> Stashed changes
 class graph
 {
     map<int,list<int>> m;
@@ -106,11 +109,15 @@ class graph
                 cout<<x.first<<" "<<x.second<<"\n";
             }
         }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 };
 
 int main()
 {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     graph g;
     g.AddEdge(0,1);
@@ -123,6 +130,8 @@ int main()
     return 0;   
 }
 =======
+=======
+>>>>>>> Stashed changes
     int i,j,k,n,m;
     graph g;
     g.addEdge(0,1);
@@ -132,5 +141,9 @@ int main()
     g.addEdge(3,4);
     g.addEdge(4,5);
     g.sp(0,5);
+<<<<<<< Updated upstream
+}
+>>>>>>> Stashed changes
+=======
 }
 >>>>>>> Stashed changes
